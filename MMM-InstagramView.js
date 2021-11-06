@@ -20,8 +20,8 @@ Module.register("MMM-InstagramView", {
         showComments: true,
         showDate: true,
         showMediaType: false,
-        animationSpeed: 1000,    // 1 second
-        updateInterval: 10000,   // 10 seconds
+        animationSpeed: 5000,    // 5 seconds
+        updateInterval: 60000,   // 60 seconds
     },
     
     // Start Module
