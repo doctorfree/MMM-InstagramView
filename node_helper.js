@@ -190,6 +190,10 @@ module.exports = NodeHelper.create({
     
     readAccessToken: function(){
         var self = this;
+        // If the access token file does not exist, create an empty one
+        if (!fs.existsSync(this.AccessTokenFile)) {
+            self.writeAccessToken('');
+        }
         fs.readFile(this.AccessTokenFile, "UTF8", function (err, data) {
             if (err) throw err;
             self.access_token = data;
