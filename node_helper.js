@@ -199,7 +199,9 @@ module.exports = NodeHelper.create({
     
     writeAccessToken: function(data){
         var self = this;
-        fs.writeFile(this.AccessTokenFile, data, function (err) {
+        // fs.writeFile(this.AccessTokenFile, data, function (err) {
+        // Creates file if it doesn't exist
+        fs.writeFile(this.AccessTokenFile, data, { flag: 'wx' }, function (err) {
             if (err) throw err;
         });
     },

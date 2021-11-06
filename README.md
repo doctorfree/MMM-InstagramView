@@ -11,6 +11,10 @@ Module loading image and example display of Instagram posting<br/>
   <img src="screenshots/Example2.png" width="270" height="480">
 </p>
 
+**Note:** This module is compatible with
+[MMM-GoogleAssistant](http://wiki.bugsounet.fr/en/MMM-GoogleAssistant),
+unlike previous Instagram modules<br/>
+
 ## Table of Contents
 
 1. [Prerequisites](#prerequisites)
@@ -66,7 +70,7 @@ From the app settings you will need:
 {
   module: 'MMM-InstagramView',
   position: 'top_center',
-  header: 'MMM-InstagramView',
+  header: 'Instagram - @doctorfree',
   config: {
     client_id: '<YOUR FACBOOK INSTAGRAM APP ID>', // Facebook Instagram App ID
     client_secret: '<YOUR FACBOOK INSTAGRAM APP SECRET>', // Facebook Instagram App Secret
