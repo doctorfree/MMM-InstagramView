@@ -11,6 +11,16 @@ Module loading image and example display of Instagram posting<br/>
   <img src="screenshots/Example2.png" width="270" height="480">
 </p>
 
+## Table of Contents
+
+1. [Prerequisites](#prerequisites)
+1. [Installing](#installing)
+1. [Configuration](#configuration)
+    1. [Example config entry](#example-config-entry)
+1. [Authorization Process](#authorization-process)
+1. [License](#license)
+1. [Acknowledgments](#acknowledgments)
+
 ## Prerequisites
 This module requires a Facebook Developer App in "Development" mode. 
 [This Getting Started guide](https://developers.facebook.com/docs/instagram-basic-display-api/getting-started) from Facebook will show you how to setup the App for instagram access.
@@ -49,24 +59,26 @@ From the app settings you will need:
 |`showMediaType`|Show media type.<br><br>**Type:** `boolean`|
 |`animationSpeed`|How long for the animation to last when moving to the next image.<br><br>**Type:** `integer`|
 |`updateInterval`|How long before refreshing image.<br><br>**Type:** `integer`|
-Example `config.js` entry:
+
+### Example config entry
+
 ```javascript
 {
-module: 'MMM-InstagramView',
-position: 'top_left',
-header: 'MMM-InstagramView',
-config: {
-  client_id: '<YOUR FACBOOK INSTAGRAM APP ID>', // Facebook Instagram App ID
-  client_secret: '<YOUR FACBOOK INSTAGRAM APP SECRET>', // Facebook Instagram App Secret
-  redirect_uri: '<YOUR FACEBOOK INSTAGRAM APP REDIRECT URL', // Facebook Instagram App redirect_uri
-  auth_code: '', // Temporary authorization code as part of the Facebook Instagram Authorization Process
-  showComments: true,
-  showControls: false,
-  showDate: true,
-  showMediaType: false,
-  animationSpeed: 1000,
-  updateInterval: 30000,
-}}
+  module: 'MMM-InstagramView',
+  position: 'top_center',
+  header: 'MMM-InstagramView',
+  config: {
+    client_id: '<YOUR FACBOOK INSTAGRAM APP ID>', // Facebook Instagram App ID
+    client_secret: '<YOUR FACBOOK INSTAGRAM APP SECRET>', // Facebook Instagram App Secret
+    redirect_uri: '<YOUR FACEBOOK INSTAGRAM APP REDIRECT URL', // Facebook Instagram App redirect_uri
+    auth_code: '', // Temporary authorization code as part of the Facebook Instagram Authorization Process
+    showComments: true,
+    showDate: true,
+    showMediaType: false,
+    animationSpeed: 5000,
+    updateInterval: 60000,
+  }
+}
 ```
 
 ## Authorization Process
@@ -80,7 +92,6 @@ config: {
 Authorization Process Step 4<br/>
   <img src="screenshots/Auth%20Step%204.png">
 </p>
-
 
 ```diff
 + Note: The mouse pointer may be hidden, just right-click to locate your pointer.
