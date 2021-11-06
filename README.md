@@ -40,7 +40,7 @@ From the app settings you will need:
 3. redirect_uri
 
 ## Installing
-1. Navigate to the `modules` folder and execute `git clone https://github.com/doctorfree/MMM-InstagramView.git`. A new folder with the name 'MMM-InstagramView will be created, navigate into it.
+1. Navigate to the `modules` folder and execute `git clone https://gitlab.com/doctorfree/MMM-InstagramView.git`. A new folder with the name 'MMM-InstagramView will be created, navigate into it.
 2. Execute `npm install` to install the node dependencies.
 3. Configure as per below.
 4. Follow the Authorization Process.
@@ -130,8 +130,13 @@ There is a mechanism in place to renew the key every time MagicMirror is restart
 If the access token expires, just repeat the authorization process.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License.
+See the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
+
+This module derives from the original MMM-Instagram module and its fork,
+the MMM-Instagram2020 module. Thanks to the following authors of those modules.
+
 * [Alexander Salter](https://github.com/AlexanderSalter) for creating the [MMM-Instagram2020](https://github.com/AlexanderSalter/MMM-Instagram2020) module used as the primary guidance in creating this module.
 * [Dimitrios Kapsalis](https://github.com/kapsolas) for creating the original [MMM-Instagram](https://github.com/kapsolas/MMM-Instagram) module that was used as guidance in creating the MMM-Instagram2020 module.
