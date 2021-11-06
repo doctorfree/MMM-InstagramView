@@ -90,7 +90,7 @@ From the app settings you will need:
 
 <p float="left">
 Authorization Process Step 4<br/>
-  <img src="screenshots/Auth%20Step%204.png">
+  <img src="screenshots/Auth_Step_4.png">
 </p>
 
 ```diff
@@ -101,14 +101,14 @@ Authorization Process Step 4<br/>
 
 <p float="left">
 Authorization Process Step 5<br/>
-  <img src="screenshots/Auth%20Step%205.png">
+  <img src="screenshots/Auth_Step_5.png">
 </p>
 
 DONT PANIC! If the url contains a string like ?code=ABCDE...........123SDG0129#_ all is good.
 
 <p float="left">
 Authorization Process Step 6<br/>
-  <img src="screenshots/Auth%20Step%206.png">
+  <img src="screenshots/Auth_Step_6.png">
 </p>
 
 7. Copy the auth_code from the url, removing the `#_` at the end
