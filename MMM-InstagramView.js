@@ -17,7 +17,6 @@ Module.register("MMM-InstagramView", {
         auth_code: '',
         access_token: '',
         showComments: true,
-        showControls: false,
         showDate: true,
         showMediaType: false,
         animationSpeed: 1000,    // 1 second
@@ -44,55 +43,54 @@ Module.register("MMM-InstagramView", {
         var wrapper = document.createElement("div");
         wrapper.classList.add("small");
         var imageDisplay = document.createElement('div');
+        var instaPost = document.createElement('div');
+        self.haveVideo = false;
         
-        if(self.stage === "load" || self.stage === "load_images"){
+        if (self.stage === "load" || self.stage === "load_images") {
             Log.log("Loading Placeholder");
-            var instaPost = document.createElement('div');
             instaPost.id = "MMM-Instagram-image";
             instaPost.innerHTML = "<img src='" + self.data.path + "ig_placeholder.png' width='100%'>";
             instaPost.innerHTML += "<p class='light' style='text-align: center;'>Loading Instagram Feed</p>";
-            // var now = moment();
-            // instaPost.innerHTML += "<p class='light xsmall' style='text-align: center;'>"+now.format('MMMM Do YYYY @ HH:mm')+"</p>";
         }
-        else if(self.stage === "auth_link"){
+        else if (self.stage === "auth_link") {
             Log.log("Loading Pre Auth Page");
-            var instaPost = document.createElement('div');
             instaPost.id = "MMM-Instagram-image";
             instaPost.innerHTML += "<p class='light' style='text-align: center;'>Click <A HREF='"+self.authorise_url+"' target='_new'>HERE</A> to authorise access to your instagram account.</p>";
         }
-        else if(self.stage === "show_images"){
+        else if (self.stage === "show_images") {
             Log.log("Loading Images");
             if (self.activeItem >= self.images.photo.length) {
                 self.activeItem = 0;
             }
-            var tempimage = self.images.photo[self.activeItem];
-            var instaPost = document.createElement('div');
-            instaPost.id = "MMM-Instagram-image";
-            if (tempimage.type == 'VIDEO') {
-              var video = document.createElement("VIDEO");
-              video.id = "MMM-Instagram-video";
-              video.setAttribute("src", tempimage.photolink);
-              video.setAttribute("type", "video/mp4");
-              video.setAttribute("width", "100%");
-              video.setAttribute("autoplay", true);
-              video.setAttribute("controls", this.config.showControls);
-              instaPost.innerHTML = "";
-            } else {
-              instaPost.innerHTML =
-                  "<img src='" + tempimage.photolink + "' width='100%'>";
-            }
-            if (this.config.showComments) {
-              instaPost.innerHTML += "<p class='light' style='font-weight: bold;font-size:30px;text-align: center;'>"+tempimage.caption+"</p>";
-            }
-            if (this.config.showDate) {
-              instaPost.innerHTML += "<p class='light xsmall' style='font-size:24px;text-align: center;'>"+tempimage.timestamp+"</p>";
-            }
-            if (this.config.showMediaType) {
-              instaPost.innerHTML += "<p class='light xsmall' style='font-size:18px;text-align: center;'>"+tempimage.type+"</p>";
+            if (typeof self.images.photo[self.activeItem] != 'undefined') {
+              var tmpMedia = self.images.photo[self.activeItem];
+              instaPost.id = "MMM-Instagram-image";
+              if (tmpMedia.type == 'VIDEO') {
+                self.haveVideo = true;
+                self.video = document.createElement("VIDEO");
+                self.video.id = "MMM-Instagram-video";
+                self.video.setAttribute("src", tmpMedia.photolink);
+                self.video.setAttribute("type", "video/mp4");
+                self.video.setAttribute("width", "100%");
+                self.video.setAttribute("autoplay", true);
+                instaPost.innerHTML = "";
+              } else {
+                instaPost.innerHTML =
+                  "<img src='" + tmpMedia.photolink + "' width='100%'>";
+              }
+              if (self.config.showComments) {
+                instaPost.innerHTML += "<p class='light' style='font-weight: bold;font-size:30px;text-align: center;'>"+tmpMedia.caption+"</p>";
+              }
+              if (self.config.showDate) {
+                instaPost.innerHTML += "<p class='light xsmall' style='font-size:24px;text-align: center;'>"+tmpMedia.timestamp+"</p>";
+              }
+              if (self.config.showMediaType) {
+                instaPost.innerHTML += "<p class='light xsmall' style='font-size:18px;text-align: center;'>"+tmpMedia.type+"</p>";
+              }
             }
         }
-        if (tempimage.type == 'VIDEO') {
-            imageDisplay.appendChild(video);
+        if (self.haveVideo) {
+            imageDisplay.appendChild(self.video);
             imageDisplay.appendChild(instaPost);
         } else {
             imageDisplay.appendChild(instaPost);
@@ -130,7 +128,7 @@ Module.register("MMM-InstagramView", {
         {
             Log.log('received INSTAGRAM_ACCESS_TOKEN: ' + payload);
             self.config.access_token = payload;
-            if(payload != ""){
+            if (payload != "") {
                 // Token Exisits
                 Log.log('Token Exists in accesstoken.cfg');
                 self.stage = "load_images";
@@ -138,16 +136,15 @@ Module.register("MMM-InstagramView", {
                 Log.log(self.name + ' sending INSTAGRAM_AUTH_REFRESH notification');
                 self.sendSocketNotification("INSTAGRAM_AUTH_REFRESH", null);
             }
-            else{
+            else {
                 // Token Does Not Exisit
                 Log.log('Token Does Not Exist in accesstoken.cfg');
-                if(self.config.auth_code != ""){
+                if (self.config.auth_code != "") {
                     //Auth Code Exisits
                     Log.log('Auth Code Exists in config.js');
                     self.stage = "auth_exchange";
                     self.sendSocketNotification('INSTAGRAM_AUTH_EXCHANGE', null);
-                }
-                else{
+                } else {
                     //Auth Code Does Not Exisit
                     Log.log('Auth Code Does Not Exist in config.js');
                     self.stage = "auth_link";
@@ -157,9 +154,9 @@ Module.register("MMM-InstagramView", {
                 self.sendSocketNotification('MMM-InstagramView-CONFIG', this.config);
             }
         }
-        else if (notification === 'INSTAGRAM_ACCESS_TOKEN_NEW'){
+        else if (notification === 'INSTAGRAM_ACCESS_TOKEN_NEW') {
             Log.log('received INSTAGRAM_ACCESS_TOKEN_NEW: ' + payload);
-            if(payload != ""){
+            if (payload != "") {
                 //Token Exisits
                 Log.log('Token Exists in accesstoken.cfg');
                 self.stage = "load_images";
@@ -168,16 +165,16 @@ Module.register("MMM-InstagramView", {
                     self.sendSocketNotification("INSTAGRAM_MEDIA_REFRESH", null);
                 },10);
             }
-            else{
+            else {
                 //Token Does Not Exisit
                 Log.log('Token Does Not Exist in accesstoken.cfg');
-                if(self.config.auth_code != ""){
+                if (self.config.auth_code != "") {
                     //Auth Code Exisits
                     Log.log('Auth Code Exists in config.js');
                     self.stage = "auth_exchange";
                     self.sendSocketNotification('INSTAGRAM_AUTH_EXCHANGE', null);
                 }
-                else{
+                else {
                     //Auth Code Does Not Exisit
                     Log.log('Auth Code Does Not Exist in config.js');
                     self.stage = "auth_link";
@@ -187,12 +184,12 @@ Module.register("MMM-InstagramView", {
                 self.sendSocketNotification('MMM-InstagramView-CONFIG', this.config);
             }
         }
-        else if(notification === 'INSTAGRAM_AUTH_URL'){
+        else if (notification === 'INSTAGRAM_AUTH_URL') {
             Log.log('received INSTAGRAM_AUTH_URL: ' + payload);
             self.authorise_url = payload;
             self.updateDom(self.config.animationSpeed);
         }
-        else if (notification === 'INSTAGRAM_IMAGE_ARRAY'){
+        else if (notification === 'INSTAGRAM_IMAGE_ARRAY') {
             Log.log('received INSTAGRAM_IMAGE_ARRAY: ' + payload);
             self.images = payload;
             self.stage = "show_images";

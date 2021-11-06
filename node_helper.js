@@ -66,12 +66,12 @@ module.exports = NodeHelper.create({
                 {
                     var id = items[i].id;
                     var media_type = items[i].media_type;
-                    // if (media_type == "VIDEO"){
-            //             var media_url = items[i].thumbnail_url;
-            //         }
-            //         else{
+                    if (media_type == 'CAROUSEL_ALBUM') {
+                        var children = items[i].children;
+                    } else {
+                        var children = [];
+                    }
                     var media_url = items[i].media_url;
-            //         }
                     var caption = items[i].caption;
                     var timestamp = moment(items[i].timestamp);
                     
@@ -79,6 +79,7 @@ module.exports = NodeHelper.create({
                         "type" : media_type,
                         "photolink" : media_url,
                         "caption" : caption,
+                        "children" : children,
                         "timestamp" : timestamp.format('MMMM Do YYYY @ HH:mm'),
                     });
                 }
