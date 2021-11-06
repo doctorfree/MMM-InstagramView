@@ -4,8 +4,12 @@ This is a module for the
 for displaying your Instagram photos, videos, carousel albums, and comments
 on your MagicMirror2. It makes use of the Facebook Instagram Graph API.
 
-![Example Module Loading Image](https://github.com/doctorfree/MMM-InstagramView/blob/master/readme_images/Example1.png)
-![Example Module Image](https://github.com/doctorfree/MMM-InstagramView/blob/master/readme_images/Example2.png)
+<p float="left">
+Module loading image and example display of Instagram posting<br/>
+(click to enlarge)<br/>
+  <img src="screenshots/Example1.png" width="270" height="480">
+  <img src="screenshots/Example2.png" width="525" height="245">
+</p>
 
 ### Prerequisites
 This module requires a Facebook Developer App in "Development" mode. 
@@ -72,7 +76,12 @@ config: {
 4. Start MagicMirror2 and wait for the authorization link to show, you will need to either VNC into your MagicMirror2 or access the MagicMirror2 interface remotely 'http://magic_mirror_ip:8080/'
 5. Look for the Message defined below and click the "Here" link
 
-![Image of Authorization Process Step 4](https://github.com/doctorfree/MMM-InstagramView/blob/master/readme_images/Auth%20Step%204.png)
+<p float="left">
+Authorization Process Step 4<br/>
+(click to enlarge)<br/>
+  <img src="screenshots/Auth%20Step%204.png" width="270" height="480">
+</p>
+
 
 ```diff
 + Note: The mouse pointer may be hidden, just right-click to locate your pointer.
@@ -80,11 +89,19 @@ config: {
 
 6. Click the Authorize Button and the form will send you to your redirect_uri and give you an auth_code in the url.
 
-![Image of Authorization Process Step 5](https://github.com/doctorfree/MMM-InstagramView/blob/master/readme_images/Auth%20Step%205.png)
+<p float="left">
+Authorization Process Step 5<br/>
+(click to enlarge)<br/>
+  <img src="screenshots/Auth%20Step%205.png" width="270" height="480">
+</p>
 
-7. DONT PANIC! If the url contains a string like ?code=ABCDE...........123SDG0129#_ all is good.
+DONT PANIC! If the url contains a string like ?code=ABCDE...........123SDG0129#_ all is good.
 
-![Image of Authorization Process Step 6](https://github.com/doctorfree/MMM-InstagramView/blob/master/readme_images/Auth%20Step6.png)
+<p float="left">
+Authorization Process Step 6<br/>
+(click to enlarge)<br/>
+  <img src="screenshots/Auth%20Step%206.png" width="270" height="480">
+</p>
 
 7. Copy the auth_code from the url, removing the "#_" at the end
 ```
@@ -93,7 +110,11 @@ config: {
 8. Add the auth_code to your config.js file.
 9. Restart MagicMirror2 and enjoy your instagram feed.
 
-![Image of Module after Authorization Process is complete](https://github.com/doctorfree/MMM-InstagramView/blob/master/readme_images/Example.png)
+<p float="left">
+After Authorization Process is Complete<br/>
+(click to enlarge)<br/>
+  <img src="screenshots/Example.png" width="270" height="480">
+</p>
 
 Note: The authorization process uses a key stored in `accesstoken.cfg` under the module directory.
 This allows access to the account for 60 days.
