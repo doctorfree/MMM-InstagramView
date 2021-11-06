@@ -51,7 +51,7 @@ module.exports = NodeHelper.create({
     
     getImages() {
         var self = this;
-        var api_url = 'https://graph.instagram.com/me/media?fields=id,media_type,media_url,caption,timestamp&access_token=' +  self.access_token;
+        var api_url = 'https://graph.instagram.com/me/media?fields=id,media_type,media_url,caption,children{media_url,media_type},timestamp&access_token=' +  self.access_token;
         request({url: api_url, method: 'GET'}, function(error, response, body) 
         {
             if (!error && response.statusCode == 200) 
@@ -66,10 +66,11 @@ module.exports = NodeHelper.create({
                 {
                     var id = items[i].id;
                     var media_type = items[i].media_type;
+                    var children = [];
                     if (media_type == 'CAROUSEL_ALBUM') {
-                        var children = items[i].children;
-                    } else {
-                        var children = [];
+                      if (typeof items[i].children != 'undefined') {
+                        var children = items[i].children.data;
+                      }
                     }
                     var media_url = items[i].media_url;
                     var caption = items[i].caption;
@@ -82,6 +83,26 @@ module.exports = NodeHelper.create({
                         "children" : children,
                         "timestamp" : timestamp.format('MMMM Do YYYY @ HH:mm'),
                     });
+
+                    if (self.config.showChildren) {
+                      // Check for children in CAROUSEL_ALBUM
+                      if (typeof children != 'undefined') {
+                        var numChildren = children.length;
+                        if (numChildren > 1) {
+                          // Push CAROUSEL_ALBUM children to photo array
+                          for (var i = 1; i < numChildren; i++) {
+                            var child = children[i];
+                            images.photo.push( {
+                              "type" : child.media_type,
+                              "photolink" : child.media_url,
+                              "caption" : caption,
+                              "children" : [],
+                              "timestamp" : timestamp.format('MMMM Do YYYY @ HH:mm'),
+                            });
+                          }
+                        }
+                      }
+                    }
                 }
                 console.log(images);
                 self.sendSocketNotification('INSTAGRAM_IMAGE_ARRAY', images);

@@ -16,7 +16,7 @@ Module.register("MMM-InstagramView", {
         redirect_uri: '',        // Facebook Instagram App redirect_uri
         auth_code: '',
         access_token: '',
-        showChildren: false,
+        showChildren: true,
         showComments: true,
         showDate: true,
         showMediaType: false,
@@ -46,7 +46,6 @@ Module.register("MMM-InstagramView", {
         var imageDisplay = document.createElement('div');
         var instaPost = document.createElement('div');
         self.haveVideo = false;
-        self.haveChildren = false;
         
         if (self.stage === "load" || self.stage === "load_images") {
             Log.log("Loading Placeholder");
@@ -67,10 +66,6 @@ Module.register("MMM-InstagramView", {
             if (typeof self.images.photo[self.activeItem] != 'undefined') {
               var tmpMedia = self.images.photo[self.activeItem];
               instaPost.id = "MMM-Instagram-image";
-              self.numChildren = tmpMedia.children.length;
-              if (self.numChildren > 0) {
-                self.haveChildren = true;
-              }
               if (tmpMedia.type == 'VIDEO') {
                 self.haveVideo = true;
                 self.video = document.createElement("VIDEO");
@@ -92,15 +87,6 @@ Module.register("MMM-InstagramView", {
               }
               if (self.config.showMediaType) {
                 instaPost.innerHTML += "<p class='light xsmall' style='font-size:18px;text-align: center;'>"+tmpMedia.type+"</p>";
-              }
-              if (self.config.showChildren) {
-                if (self.haveChildren) {
-                  instaPost.innerHTML += "<p class='light xsmall' style='font-size:18px;text-align: center;'>Children:</p>";
-                  for (var i = 0; i < self.numChildren; i++) {
-                    var child = tmpMedia.children[i];
-                    instaPost.innerHTML += "<p class='light xsmall' style='font-size:18px;text-align: center;'>"+child+"</p>";
-                  }
-                }
               }
             }
         }

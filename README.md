@@ -23,6 +23,7 @@ unlike previous Instagram modules<br/>
     1. [Example config entry](#example-config-entry)
     1. [CSS Styling](#css-styling)
 1. [Authorization Process](#authorization-process)
+1. [Features](#features)
 1. [Support](#support)
 1. [License](#license)
 1. [Acknowledgments](#acknowledgments)
@@ -60,7 +61,7 @@ From the app settings you will need:
 |`redirect_uri`|OAuth Redirect URIs required for the Facebook Instagram APP.<br><br>**Type:** `string`<br>This value is **REQUIRED**|
 |`auth_code`|Used to input a temporary authorization code as part of the authorization process<br><br>**Type:** `string`|
 |`showComments`|Show post description.<br><br>**Type:** `boolean`|
-|`showControls`|Show video playback controls.<br><br>**Type:** `boolean`|
+|`showChildren`|Show all media in post (Carousel Albums).<br><br>**Type:** `boolean`|
 |`showDate`|Show date and time of post.<br><br>**Type:** `boolean`|
 |`showMediaType`|Show media type.<br><br>**Type:** `boolean`|
 |`animationSpeed`|How long for the animation to last when moving to the next image.<br><br>**Type:** `integer`|
@@ -79,6 +80,7 @@ From the app settings you will need:
     redirect_uri: '<YOUR FACEBOOK INSTAGRAM APP REDIRECT URL', // Facebook Instagram App redirect_uri
     auth_code: '', // Temporary authorization code as part of the Facebook Instagram Authorization Process
     showComments: true,
+    showChildren: true,
     showDate: true,
     showMediaType: false,
     animationSpeed: 5000,
@@ -179,6 +181,26 @@ After Authorization Process is Complete<br/>
 under the module directory. This allows access to the account for 60 days.
 There is a mechanism in place to renew the key every time MagicMirror is restarted.
 If the access token expires, just repeat the authorization process.
+
+## Features
+
+In addition to those features available and supported in MMM-Instagram and
+MMM-Instagram2020, this module supports features previously unavailable in
+MagicMirror Instagram modules. Included with this version of MMM-InstagramView
+are the following:
+
+- Support for playback of Instagram video posts
+- All media in multiple media Instagram posts can be displayed
+    - The `showChildren` config option controls whether all media in posts are displayed
+- Compatibility with MMM-GoogleAssistant and MMM-Detector
+- Additional configuration options:
+   - showComments: Controls whether post description is displayed
+   - showChildren: Controls whether additional media in post are shown
+   - showDate: Controls whether date of post is displayed
+   - showMediaType: Controls whether media type is displayed
+- Improved custom CSS capabilities
+- Module updates no longer clobber the stored access token
+- Multiple bug fixes
 
 ## Support
 
