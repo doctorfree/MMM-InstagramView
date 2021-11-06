@@ -21,7 +21,9 @@ unlike previous Instagram modules<br/>
 1. [Installing](#installing)
 1. [Configuration](#configuration)
     1. [Example config entry](#example-config-entry)
+    1. [CSS Styling](#css-styling)
 1. [Authorization Process](#authorization-process)
+1. [Support](#support)
 1. [License](#license)
 1. [Acknowledgments](#acknowledgments)
 
@@ -44,7 +46,7 @@ From the app settings you will need:
 3. redirect_uri
 
 ## Installing
-1. Navigate to the `modules` folder and execute `git clone https://gitlab.com/doctorfree/MMM-InstagramView.git`. A new folder with the name 'MMM-InstagramView will be created, navigate into it.
+1. Navigate to the `modules` folder and execute `git clone https://github.com/doctorfree/MMM-InstagramView.git`. A new folder with the name 'MMM-InstagramView will be created, navigate into it.
 2. Execute `npm install` to install the node dependencies.
 3. Configure as per below.
 4. Follow the Authorization Process.
@@ -82,6 +84,51 @@ From the app settings you will need:
     animationSpeed: 5000,
     updateInterval: 60000,
   }
+}
+```
+
+### CSS Styling
+
+The default styling applied to the MMM-InstagramView module is as follows:
+
+```css
+.image {
+  margin-right: 15px;
+}
+
+.green {
+  color: #83FFB3;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.red {
+  color: #FF4C4C;
+}
+
+#MMM-Instagram-image {
+  width:1080px;
+}
+
+#MMM-Instagram-video {
+  width:1080px;
+}
+```
+
+Additional custom styling may be applied with entries in:
+
+```console
+MagicMirror/css/custom.css
+```
+
+For example, to increase the font size of the module header,
+add the following to your custom.css file:
+
+```css
+.MMM-InstagramView .module-header {
+  font-size: 40px;
 }
 ```
 
@@ -132,6 +179,11 @@ After Authorization Process is Complete<br/>
 under the module directory. This allows access to the account for 60 days.
 There is a mechanism in place to renew the key every time MagicMirror is restarted.
 If the access token expires, just repeat the authorization process.
+
+## Support
+
+Issues with MMM-InstagramView can be reported and tracked in the Issues section
+of the repository at https://github.com/doctorfree/MMM-InstagramView/issues
 
 ## License
 This project is licensed under the MIT License.
