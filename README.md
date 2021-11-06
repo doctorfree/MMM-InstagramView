@@ -1,17 +1,17 @@
-# MMM-InstagramView
+## MMM-InstagramView
 This is a module for the
-[MagicMirror2](https://github.com/MichMich/MagicMirror/tree/develop)
+[MagicMirror](https://github.com/MichMich/MagicMirror/tree/develop)
 for displaying your Instagram photos, videos, carousel albums, and comments
-on your MagicMirror2. It makes use of the Facebook Instagram Graph API.
+on your MagicMirror. It makes use of the Facebook Instagram Graph API.
 
 <p float="left">
 Module loading image and example display of Instagram posting<br/>
 (click to enlarge)<br/>
   <img src="screenshots/Example1.png" width="270" height="480">
-  <img src="screenshots/Example2.png" width="525" height="245">
+  <img src="screenshots/Example2.png" width="270" height="480">
 </p>
 
-### Prerequisites
+## Prerequisites
 This module requires a Facebook Developer App in "Development" mode. 
 [This Getting Started guide](https://developers.facebook.com/docs/instagram-basic-display-api/getting-started) from Facebook will show you how to setup the App for instagram access.
 ```diff
@@ -29,13 +29,13 @@ From the app settings you will need:
 2. client_secret
 3. redirect_uri
 
-### Installing
+## Installing
 1. Navigate to the `modules` folder and execute `git clone https://github.com/doctorfree/MMM-InstagramView.git`. A new folder with the name 'MMM-InstagramView will be created, navigate into it.
 2. Execute `npm install` to install the node dependencies.
 3. Configure as per below.
 4. Follow the Authorization Process.
 
-### Configuration
+## Configuration
 
 |Option|Description|
 |---|---|
@@ -50,7 +50,7 @@ From the app settings you will need:
 |`animationSpeed`|How long for the animation to last when moving to the next image.<br><br>**Type:** `integer`|
 |`updateInterval`|How long before refreshing image.<br><br>**Type:** `integer`|
 Example `config.js` entry:
-```
+```javascript
 {
 module: 'MMM-InstagramView',
 position: 'top_left',
@@ -69,17 +69,16 @@ config: {
 }}
 ```
 
-### Authorization Process
+## Authorization Process
 1. Ensure that client_id, client_secret and redirect_uri are all configured in config.js and that they match your settings in the Facebook Develloper App.
 2. Ensure the auth_code configuration varibale is set to nothing or ''.
 3. Ensure the `accesstoken.cfg` file does not contain an access token and is completely blank.
-4. Start MagicMirror2 and wait for the authorization link to show, you will need to either VNC into your MagicMirror2 or access the MagicMirror2 interface remotely 'http://magic_mirror_ip:8080/'
+4. Start MagicMirror and wait for the authorization link to show, you will need to either VNC into your MagicMirror or access the MagicMirror interface remotely 'http://magic_mirror_ip:8080/'
 5. Look for the Message defined below and click the "Here" link
 
 <p float="left">
 Authorization Process Step 4<br/>
-(click to enlarge)<br/>
-  <img src="screenshots/Auth%20Step%204.png" width="270" height="480">
+  <img src="screenshots/Auth%20Step%204.png">
 </p>
 
 
@@ -91,24 +90,22 @@ Authorization Process Step 4<br/>
 
 <p float="left">
 Authorization Process Step 5<br/>
-(click to enlarge)<br/>
-  <img src="screenshots/Auth%20Step%205.png" width="270" height="480">
+  <img src="screenshots/Auth%20Step%205.png">
 </p>
 
 DONT PANIC! If the url contains a string like ?code=ABCDE...........123SDG0129#_ all is good.
 
 <p float="left">
 Authorization Process Step 6<br/>
-(click to enlarge)<br/>
-  <img src="screenshots/Auth%20Step%206.png" width="270" height="480">
+  <img src="screenshots/Auth%20Step%206.png">
 </p>
 
-7. Copy the auth_code from the url, removing the "#_" at the end
+7. Copy the auth_code from the url, removing the `#_` at the end
 ```
 ?code= <<<auth_code>>> #_
 ```
 8. Add the auth_code to your config.js file.
-9. Restart MagicMirror2 and enjoy your instagram feed.
+9. Restart MagicMirror and enjoy your instagram feed.
 
 <p float="left">
 After Authorization Process is Complete<br/>
@@ -116,14 +113,14 @@ After Authorization Process is Complete<br/>
   <img src="screenshots/Example.png" width="270" height="480">
 </p>
 
-Note: The authorization process uses a key stored in `accesstoken.cfg` under the module directory.
-This allows access to the account for 60 days.
-There is a mechanism in place to renew the key every time MagicMirror2 is restarted.
-If the access token gets to old, just repeat the authorization process.
+**Note:** The authorization process uses a key stored in `accesstoken.cfg`
+under the module directory. This allows access to the account for 60 days.
+There is a mechanism in place to renew the key every time MagicMirror is restarted.
+If the access token expires, just repeat the authorization process.
 
-# License
+## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-# Acknowledgments
+## Acknowledgments
 * [Alexander Salter](https://github.com/AlexanderSalter) for creating the [MMM-Instagram2020](https://github.com/AlexanderSalter/MMM-Instagram2020) module used as the primary guidance in creating this module.
 * [Dimitrios Kapsalis](https://github.com/kapsolas) for creating the original [MMM-Instagram](https://github.com/kapsolas/MMM-Instagram) module that was used as guidance in creating the MMM-Instagram2020 module.
