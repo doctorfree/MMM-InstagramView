@@ -1,0 +1,28 @@
+{
+  "name": "MMM-InstagramView",
+  "version": "1.0.0",
+  "description": "Magic Mirror Module for displaying your Instagram Posts on Magic Mirror",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doctorfree/MMM-InstagramView"
+  },
+  "keywords": [
+    "magic mirror",
+    "smart mirror",
+    "instagram",
+    "entertainment",
+    "module"
+  ],
+  "author": "Ronald Record",
+  "contributors": "https://github.com/doctorfree/MMM-InstagramView/graphs/contributors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/doctorfree/MMM-InstagramView/issues"
+  },
+  "homepage": "https://github.com/doctorfree/MMM-InstagramView#readme",
+  "dependencies": {
+    "request": "latest",
+    "fs": "latest",
+    "moment": "latest"
+  }
+}
