@@ -210,10 +210,11 @@ are the following:
     - The `showChildren` config option controls whether all media in posts are displayed
 - Compatibility with MMM-GoogleAssistant and MMM-Detector
 - Additional configuration options:
-   - showComments: Controls whether post description is displayed
-   - showChildren: Controls whether additional media in post are shown
-   - showDate: Controls whether date of post is displayed
-   - showMediaType: Controls whether media type is displayed
+   - `showComments:` Controls whether post description is displayed
+   - `showChildren:` Controls whether additional media in post are shown
+   - `showDate:` Controls whether date of post is displayed
+   - `showMediaType:` Controls whether media type is displayed
+   - `startRandom:` Choose a random starting point to display Instagram feed media
 - Improved custom CSS capabilities
 - Module updates no longer clobber the stored access token
 - Multiple bug fixes
