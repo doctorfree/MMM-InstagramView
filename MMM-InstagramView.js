@@ -20,6 +20,7 @@ Module.register("MMM-InstagramView", {
         showComments: true,
         showDate: true,
         showMediaType: false,
+        startRandom: false,
         animationSpeed: 5000,    // 5 seconds
         updateInterval: 60000,   // 60 seconds
     },
@@ -60,7 +61,18 @@ Module.register("MMM-InstagramView", {
         }
         else if (self.stage === "show_images") {
             Log.log("Loading Images");
-            if (self.activeItem >= self.images.photo.length) {
+            var imagesLength = self.images.photo.length;
+            // Pick a random starting point, only the first time through
+            if (self.config.startRandom) {
+             if (self.activeItem == 0) {
+              if (typeof self.images.photo != 'undefined') {
+                Log.log("Getting random integer between 0 and " + imagesLength);
+                self.activeItem = self.getIntBetween(0, imagesLength);
+                Log.log("Setting activeItem to " + self.activeItem);
+              }
+             }
+            }
+            if (self.activeItem >= imagesLength) {
                 self.activeItem = 0;
             }
             if (typeof self.images.photo[self.activeItem] != 'undefined') {
@@ -102,6 +114,13 @@ Module.register("MMM-InstagramView", {
     
     getStyles: function() {
         return ['instagram.css', 'font-awesome.css'];
+    },
+
+    // Returns a random number between min (inclusive) and max (exclusive)
+    getIntBetween: function(min, max) {
+        return Math.floor(
+          Math.random() * (max - min) + min
+        )
     },
     
     doAuthentication: function() {

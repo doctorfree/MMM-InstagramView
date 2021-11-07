@@ -23,7 +23,7 @@ module.exports = NodeHelper.create({
     },
     
     // subclass socketNotificationReceived
-    socketNotificationReceived: function(notification, payload){
+    socketNotificationReceived: function(notification, payload) {
         var self = this;
         console.log("=========== notification received: " + notification);
         if (notification === 'MMM-InstagramView-CONFIG') {
@@ -104,7 +104,7 @@ module.exports = NodeHelper.create({
                       }
                     }
                 }
-                console.log(images);
+                // console.log(images);
                 self.sendSocketNotification('INSTAGRAM_IMAGE_ARRAY', images);
             }
             else
@@ -124,7 +124,7 @@ module.exports = NodeHelper.create({
             {
                 // get our authentication token from the response
                 var response_values = JSON.parse(body);
-                console.log(response_values['access_token']); 
+                // console.log(response_values['access_token']); 
                 self.access_token = response_values['access_token'];
                 self.writeAccessToken(self.access_token);
                 self.sendSocketNotification("INSTAGRAM_ACCESS_TOKEN_NEW", self.access_token);                  
@@ -132,7 +132,7 @@ module.exports = NodeHelper.create({
             else if (!error && response.statusCode == 400) 
             {
                 console.log("MMM-InstagramView Helper Refresh Auth Token Error: " + response.statusCode);
-                console.log(body);
+                // console.log(body);
                 
             }
             else
@@ -151,15 +151,15 @@ module.exports = NodeHelper.create({
         form_array['grant_type']='authorization_code';
         form_array['redirect_uri']=self.config.redirect_uri;
         form_array['code']=self.config.auth_code;
-        console.log(api_url);
-        console.log(form_array);
+        // console.log(api_url);
+        // console.log(form_array);
         request({url: api_url, method: 'POST', form: form_array}, function(error, response, body) 
         {
             if (!error && response.statusCode == 200) 
             {
                 // get our authentication token from the response
                 var response_values = JSON.parse(body);
-                console.log(response_values['access_token']);
+                // console.log(response_values['access_token']);
                 var api_url = 'https://graph.instagram.com/access_token';
                 api_url += '?grant_type=ig_exchange_token';
                 api_url += '&client_secret='+self.config.client_secret;
@@ -169,16 +169,16 @@ module.exports = NodeHelper.create({
                     {
                         // get our authentication token from the response
                         var response_values = JSON.parse(body);
-                        console.log(body);
+                        // console.log(body);
                         self.access_token = response_values['access_token'];
-                        console.log(self.access_token);  
+                        // console.log(self.access_token);  
                         self.writeAccessToken(self.access_token);
                         self.sendSocketNotification("INSTAGRAM_ACCESS_TOKEN_NEW", self.access_token);                        
                     }
                     else if (!error && response.statusCode == 400) 
                     {
                         console.log("MMM-InstagramView Helper Auth Extend Error: " + response.statusCode);
-                        console.log(body);
+                        // console.log(body);
                         
                     }
                     else
@@ -190,7 +190,7 @@ module.exports = NodeHelper.create({
             else if (!error && response.statusCode == 400) 
             {
                 console.log("MMM-InstagramView Helper Auth Exchange Error: " + response.statusCode);
-                console.log(body);                
+                // console.log(body);                
             }
             else
             {
@@ -209,26 +209,42 @@ module.exports = NodeHelper.create({
         self.sendSocketNotification('INSTAGRAM_AUTH_URL', api_url);
     },
     
-    readAccessToken: function(){
+    creatAccessToken: function(data) {
+        var self = this;
+        // Creates file if it doesn't exist
+        try {
+          fs.writeFile(this.AccessTokenFile, data, { flag: 'wx' }, function (err) {
+            if (err) throw err;
+          });
+        } catch (e) {
+          console.error("[InstagramView] createAccessToken: error creating empty accesstoken file", e);
+        }
+    },
+    
+    readAccessToken: function() {
         var self = this;
         // If the access token file does not exist, create an empty one
         if (!fs.existsSync(this.AccessTokenFile)) {
-            self.writeAccessToken('');
+            self.creatAccessToken('');
         }
-        fs.readFile(this.AccessTokenFile, "UTF8", function (err, data) {
+        try {
+          fs.readFile(this.AccessTokenFile, "UTF8", function (err, data) {
             if (err) throw err;
             self.access_token = data;
-            //console.log(self.access_token);
-        });
+          });
+        } catch (e) {
+          console.error("[InstagramView] readAccessToken: error reading accesstoken file", e);
+        }
     },
     
-    writeAccessToken: function(data){
+    writeAccessToken: function(data) {
         var self = this;
-        // fs.writeFile(this.AccessTokenFile, data, function (err) {
-        // Creates file if it doesn't exist
-        fs.writeFile(this.AccessTokenFile, data, { flag: 'wx' }, function (err) {
+        try {
+          fs.writeFile(this.AccessTokenFile, data, function (err) {
             if (err) throw err;
-        });
+          });
+        } catch (e) {
+          console.error("[InstagramView] readAccessToken: error writing accesstoken file", e);
+        }
     },
-    
- });
+});

@@ -68,18 +68,19 @@ npm install # install (new) dependencies
 
 ## Configuration
 
-|Option|Description|
-|---|---|
-|`client_id`|Facebook Instagram App ID required for the Facebook Instagram APP. <br><br>**Type:** `string`<br>This value is **REQUIRED**|
-|`client_secret`|Client Secret required for the Facebook Instagram APP.<br><br>**Type:** `string`<br>This value is **REQUIRED**|
-|`redirect_uri`|OAuth Redirect URIs required for the Facebook Instagram APP.<br><br>**Type:** `string`<br>This value is **REQUIRED**|
-|`auth_code`|Used to input a temporary authorization code as part of the authorization process<br><br>**Type:** `string`|
-|`showComments`|Show post description.<br><br>**Type:** `boolean`|
-|`showChildren`|Show all media in post (Carousel Albums).<br><br>**Type:** `boolean`|
-|`showDate`|Show date and time of post.<br><br>**Type:** `boolean`|
-|`showMediaType`|Show media type.<br><br>**Type:** `boolean`|
-|`animationSpeed`|How long for the animation to last when moving to the next image.<br><br>**Type:** `integer`|
-|`updateInterval`|How long before refreshing image.<br><br>**Type:** `integer`|
+|Option|Description|Default|
+|---|---|---|
+|`client_id`|Facebook Instagram App ID required for the Facebook Instagram APP. <br><br>**Type:** `string`<br>This value is **REQUIRED**|empty string|
+|`client_secret`|Client Secret required for the Facebook Instagram APP.<br><br>**Type:** `string`<br>This value is **REQUIRED**|empty string|
+|`redirect_uri`|OAuth Redirect URIs required for the Facebook Instagram APP.<br><br>**Type:** `string`<br>This value is **REQUIRED**|empty string|
+|`auth_code`|Used to input a temporary authorization code as part of the authorization process<br><br>**Type:** `string`|empty string|
+|`showComments`|Show post description.<br><br>**Type:** `boolean`|true|
+|`showChildren`|Show all media in post (Carousel Albums).<br><br>**Type:** `boolean`|true|
+|`showDate`|Show date and time of post.<br><br>**Type:** `boolean`|true|
+|`showMediaType`|Show media type.<br><br>**Type:** `boolean`|false|
+|`startRandom`|Begin display of Instagram posts at a random point in your feed.<br><br>**Type:** `boolean`|false|
+|`animationSpeed`|How long for the animation to last when moving to the next image.<br><br>**Type:** `integer`|5000|
+|`updateInterval`|How long before refreshing image.<br><br>**Type:** `integer`|60000|
 
 ### Example config entry
 
@@ -97,6 +98,7 @@ npm install # install (new) dependencies
     showChildren: true,
     showDate: true,
     showMediaType: false,
+    startRandom: true,
     animationSpeed: 5000,
     updateInterval: 60000,
   }
