@@ -19,6 +19,7 @@ unlike previous Instagram modules<br/>
 
 1. [Prerequisites](#prerequisites)
 1. [Installing](#installing)
+    1. [Updates](#updates)
 1. [Configuration](#configuration)
     1. [Example config entry](#example-config-entry)
     1. [CSS Styling](#css-styling)
@@ -51,6 +52,19 @@ From the app settings you will need:
 2. Execute `npm install` to install the node dependencies.
 3. Configure as per below.
 4. Follow the Authorization Process.
+
+### Updates
+Update this module by navigating into its folder on the command line
+and executing the commands:
+
+- `git pull`
+- `npm install`
+
+```bash
+cd ~/MagicMirror/modules/MMM-InstagramView # adapt directory if you are using a different one
+git pull
+npm install # install (new) dependencies
+```
 
 ## Configuration
 
