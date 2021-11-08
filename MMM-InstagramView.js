@@ -17,7 +17,7 @@ Module.register("MMM-InstagramView", {
         auth_code: '',
         access_token: '',
         showChildren: true,
-        showComments: true,
+        showCaptions: true,
         showDate: true,
         showMediaType: false,
         startRandom: false,
@@ -91,7 +91,7 @@ Module.register("MMM-InstagramView", {
                 instaPost.innerHTML =
                   "<img src='" + tmpMedia.photolink + "' width='100%'>";
               }
-              if (self.config.showComments) {
+              if (self.config.showCaptions) {
                 instaPost.innerHTML += "<p class='light' style='font-weight: bold;font-size:30px;text-align: center;'>"+tmpMedia.caption+"</p>";
               }
               if (self.config.showDate) {

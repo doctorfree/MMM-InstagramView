@@ -1,7 +1,6 @@
 ## MMM-InstagramView
-This is a module for the
-[MagicMirror](https://github.com/MichMich/MagicMirror/tree/develop)
-for displaying your Instagram photos, videos, carousel albums, and comments
+This [MagicMirror](https://github.com/MichMich/MagicMirror/tree/develop)
+module displays your Instagram photos, videos, carousel albums, and captions
 on your MagicMirror. It makes use of the Facebook Instagram Graph API.
 
 <p float="left">
@@ -10,10 +9,6 @@ Module loading image and example display of Instagram posting<br/>
   <img src="screenshots/Example1.png" width="270" height="480">
   <img src="screenshots/Example2.png" width="270" height="480">
 </p>
-
-**Note:** This module is compatible with
-[MMM-GoogleAssistant](http://wiki.bugsounet.fr/en/MMM-GoogleAssistant),
-unlike previous Instagram modules<br/>
 
 ## Table of Contents
 
@@ -70,17 +65,17 @@ npm install # install (new) dependencies
 
 |Option|Description|Default|
 |---|---|---|
-|`client_id`|Facebook Instagram App ID required for the Facebook Instagram APP. <br><br>**Type:** `string`<br>This value is **REQUIRED**|empty string|
-|`client_secret`|Client Secret required for the Facebook Instagram APP.<br><br>**Type:** `string`<br>This value is **REQUIRED**|empty string|
-|`redirect_uri`|OAuth Redirect URIs required for the Facebook Instagram APP.<br><br>**Type:** `string`<br>This value is **REQUIRED**|empty string|
+|`client_id`|Facebook Instagram App ID required for the Facebook Instagram APP <br><br>**Type:** `string`<br>This value is **REQUIRED**|empty string|
+|`client_secret`|Client Secret required for the Facebook Instagram APP<br><br>**Type:** `string`<br>This value is **REQUIRED**|empty string|
+|`redirect_uri`|OAuth Redirect URIs required for the Facebook Instagram APP<br><br>**Type:** `string`<br>This value is **REQUIRED**|empty string|
 |`auth_code`|Used to input a temporary authorization code as part of the authorization process<br><br>**Type:** `string`|empty string|
-|`showComments`|Show post description.<br><br>**Type:** `boolean`|true|
-|`showChildren`|Show all media in post (Carousel Albums).<br><br>**Type:** `boolean`|true|
-|`showDate`|Show date and time of post.<br><br>**Type:** `boolean`|true|
-|`showMediaType`|Show media type.<br><br>**Type:** `boolean`|false|
-|`startRandom`|Begin display of Instagram posts at a random point in your feed.<br><br>**Type:** `boolean`|false|
-|`animationSpeed`|How long for the animation to last when moving to the next image.<br><br>**Type:** `integer`|5000|
-|`updateInterval`|How long before refreshing image.<br><br>**Type:** `integer`|60000|
+|`showCaptions`|Show post caption<br><br>**Type:** `boolean`|true|
+|`showChildren`|Show all media in post (Carousel Albums)<br><br>**Type:** `boolean`|true|
+|`showDate`|Show date and time of post<br><br>**Type:** `boolean`|true|
+|`showMediaType`|Show media type<br><br>**Type:** `boolean`|false|
+|`startRandom`|Begin display of Instagram posts at a random point in your feed<br><br>**Type:** `boolean`|false|
+|`animationSpeed`|How long for the animation to last when moving to the next image<br><br>**Type:** `integer`|5000|
+|`updateInterval`|How long before refreshing image<br><br>**Type:** `integer`|60000|
 
 ### Example config entry
 
@@ -94,7 +89,7 @@ npm install # install (new) dependencies
     client_secret: '<YOUR FACBOOK INSTAGRAM APP SECRET>', // Facebook Instagram App Secret
     redirect_uri: '<YOUR FACEBOOK INSTAGRAM APP REDIRECT URL', // Facebook Instagram App redirect_uri
     auth_code: '', // Temporary authorization code as part of the Facebook Instagram Authorization Process
-    showComments: true,
+    showCaptions: true,
     showChildren: true,
     showDate: true,
     showMediaType: false,
@@ -208,9 +203,9 @@ are the following:
 - Support for playback of Instagram video posts
 - All media in multiple media Instagram posts can be displayed
     - The `showChildren` config option controls whether all media in posts are displayed
-- Compatibility with MMM-GoogleAssistant and MMM-Detector
+- Compatibility with [MMM-GoogleAssistant](http://wiki.bugsounet.fr/en/MMM-GoogleAssistant) and [MMM-Detector](http://wiki.bugsounet.fr/en/MMM-Detector) unlike previous Instagram modules
 - Additional configuration options:
-   - `showComments:` Controls whether post description is displayed
+   - `showCaptions:` Controls whether post caption is displayed
    - `showChildren:` Controls whether additional media in post are shown
    - `showDate:` Controls whether date of post is displayed
    - `showMediaType:` Controls whether media type is displayed
