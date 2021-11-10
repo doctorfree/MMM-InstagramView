@@ -74,6 +74,7 @@ npm install # install (new) dependencies
 |`showDate`|Show date and time of post<br><br>**Type:** `boolean`|true|
 |`showMediaType`|Show media type<br><br>**Type:** `boolean`|false|
 |`startRandom`|Begin display of Instagram posts at a random point in your feed<br><br>**Type:** `boolean`|false|
+|`shuffle`|Display Instagram posts in random order<br><br>**Type:** `boolean`|false|
 |`animationSpeed`|How long for the animation to last when moving to the next image<br><br>**Type:** `integer`|5000|
 |`updateInterval`|How long before refreshing image<br><br>**Type:** `integer`|60000|
 
@@ -94,6 +95,7 @@ npm install # install (new) dependencies
     showDate: true,
     showMediaType: false,
     startRandom: true,
+    shuffle: true,
     animationSpeed: 5000,
     updateInterval: 60000,
   }
@@ -210,6 +212,7 @@ are the following:
    - `showDate:` Controls whether date of post is displayed
    - `showMediaType:` Controls whether media type is displayed
    - `startRandom:` Choose a random starting point to display Instagram feed media
+   - `shuffle:` Display Instagram posts in random order
 - Improved custom CSS capabilities
 - Module updates no longer clobber the stored access token
 - Multiple bug fixes

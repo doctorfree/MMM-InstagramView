@@ -21,6 +21,7 @@ Module.register("MMM-InstagramView", {
         showDate: true,
         showMediaType: false,
         startRandom: false,
+        shuffle: false,
         animationSpeed: 5000,    // 5 seconds
         updateInterval: 60000,   // 60 seconds
     },
@@ -63,7 +64,7 @@ Module.register("MMM-InstagramView", {
             Log.log("Loading Images");
             var imagesLength = self.images.photo.length;
             // Pick a random starting point, only the first time through
-            if (self.config.startRandom) {
+            if ((self.config.startRandom) || (self.config.shuffle)) {
              if (self.activeItem == 0) {
               if (typeof self.images.photo != 'undefined') {
                 Log.log("Getting random integer between 0 and " + imagesLength);
@@ -134,8 +135,15 @@ Module.register("MMM-InstagramView", {
         Log.info("Scheduled update interval set up...");
         self.updateDom(self.config.animationSpeed);
         setInterval(function() {
-            Log.info("incrementing the activeItem and refreshing");
-            self.activeItem++;
+            if (self.config.shuffle) {
+                var imagesLength = self.images.photo.length;
+                Log.info("Getting random integer between 0 and " + imagesLength);
+                self.activeItem = self.getIntBetween(0, imagesLength);
+                Log.info("Setting activeItem to " + self.activeItem);
+            } else {
+                Log.info("incrementing the activeItem and refreshing");
+                self.activeItem++;
+            }
             self.updateDom(self.config.animationSpeed);
         }, this.config.updateInterval);
     },
